@@ -1,7 +1,7 @@
 import express from "express";
 import { PORT, mongoUrl } from "./config.js";
 import mongoose from "mongoose";
-import { Book } from "./models/bookModel.js";
+import booksRoute from "./routes/booksRoute.js";
 
 const app = express();
 
@@ -12,28 +12,7 @@ app.get("/", (req, res) => {
   return res.status(234).send("Welcome to Book Store");
 });
 
-app.post("/api/book", async (req, res) => {
-  try {
-    if (!req.body.title || !req.body.author || !req.body.publishYear) {
-      return res.status(400).send({
-        message: "All fields are required ",
-      });
-    }
-
-    const newBook = {
-      title: req.body.title,
-      author: req.body.author,
-      publishYear: req.body.publishYear,
-    };
-
-    const book = await Book.create(newBook);
-
-    return res.status(201).send(book);
-  } catch (error) {
-    console.log(error.message);
-    res.send(500).send({ message: error.message });
-  }
-});
+app.use("/api", booksRoute);
 
 mongoose
   .connect(mongoUrl)
