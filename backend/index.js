@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   return res.status(234).send("Welcome to Book Store");
 });
 
-app.use("/api", booksRoute);
+app.use("/books", booksRoute);
 
 mongoose
   .connect(mongoUrl)
