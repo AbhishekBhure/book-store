@@ -2,11 +2,15 @@ import express from "express";
 import { PORT, mongoUrl } from "./config.js";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
+import cors from "cors";
 
 const app = express();
 
 //Middleware for parsing req body into json
 app.use(express.json());
+
+//Middleware for handle CORS Policy
+app.use(cors());
 
 app.get("/", (req, res) => {
   return res.status(234).send("Welcome to Book Store");
