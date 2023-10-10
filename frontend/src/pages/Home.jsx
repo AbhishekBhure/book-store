@@ -28,10 +28,16 @@ const Home = () => {
   return (
     <div className="p-4">
       <div className="flex justify-center items-center gap-x-4">
-        <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg">
+        <button
+          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          onClick={() => setShowType("table")}
+        >
           Table
         </button>
-        <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg">
+        <button
+          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          onClick={() => setShowType("card")}
+        >
           Card
         </button>
       </div>
@@ -41,7 +47,13 @@ const Home = () => {
           <MdOutlineAddBox className="text-sky-800 text-4xl" />
         </Link>
       </div>
-      {loading ? <Spinner /> : <BooksTable books={books} />}
+      {loading ? (
+        <Spinner />
+      ) : showType === "table" ? (
+        <BooksTable books={books} />
+      ) : (
+        "Card"
+      )}
     </div>
   );
 };
