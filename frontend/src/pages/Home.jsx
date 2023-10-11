@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import BooksTable from "../components/home/BooksTable";
 import axios from "axios";
 import Spinner from "../components/Spinner";
+import BooksCard from "../components/home/BooksCard";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -52,7 +53,7 @@ const Home = () => {
       ) : showType === "table" ? (
         <BooksTable books={books} />
       ) : (
-        "Card"
+        <BooksCard books={books} />
       )}
     </div>
   );
