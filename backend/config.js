@@ -1,4 +1,8 @@
+import dotenv from "dotenv";
 export const PORT = 5555;
 
-export const mongoUrl =
-  "mongodb+srv://abhishek:abhi@cluster0.hmb5hw6.mongodb.net/bookstore?retryWrites=true&w=majority";
+//configuring env
+dotenv.config();
+
+export const mongoUrl = process.env.MONGO_ATLAS_URI;
+("/paste mongodb atlas connection string -- add password and collection name/");
